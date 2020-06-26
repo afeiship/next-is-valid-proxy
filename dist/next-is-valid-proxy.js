@@ -2,22 +2,29 @@
  * name: @feizheng/next-is-valid-proxy
  * description: Check if proxy is valid.
  * homepage: https://github.com/afeiship/next-is-valid-proxy
- * version: 1.0.0
- * date: 2020-06-23T02:03:59.200Z
+ * version: 1.1.0
+ * date: 2020-06-26T10:11:57.386Z
  * license: MIT
  */
 
 (function () {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@feizheng/next-js-core2');
-  var fetch = require('node-fetch');
-  var ProxyAgent = require('proxy-agent');
+  var nodeFetch = require('node-fetch');
+  var nxApplyMiddlewares = require('@feizheng/next-apply-fetch-middleware');
+  var nxFetchWithProxy = require('@feizheng/next-fetch-with-proxy');
+  var nxFetchWithTimeut = require('@feizheng/next-fetch-with-timeout');
+
   var DEFAULT_OPTIONS = { method: 'GET', timeout: 5 * 1000 };
   var CHECK_SOURCE = 'https://icanhazip.com';
+  var fetch = nxApplyMiddlewares([
+    nxFetchWithProxy,
+    nxFetchWithTimeut
+  ])(nodeFetch);
 
   nx.isValidProxy = function (inUrl, inOptions) {
     var options = nx.mix(null, DEFAULT_OPTIONS, inOptions);
-    var fetchOptions = nx.mix({ agent: new ProxyAgent(inUrl) }, options);
+    var fetchOptions = nx.mix({ proxy: inUrl }, options);
     return new Promise(function (resolve) {
       fetch(CHECK_SOURCE, fetchOptions)
         .then(function (res) {
