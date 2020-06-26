@@ -2,8 +2,8 @@
  * name: @feizheng/next-is-valid-proxy
  * description: Check if proxy is valid.
  * homepage: https://github.com/afeiship/next-is-valid-proxy
- * version: 1.1.0
- * date: 2020-06-26T10:11:57.386Z
+ * version: 1.1.1
+ * date: 2020-06-26T10:16:01.249Z
  * license: MIT
  */
 
@@ -14,8 +14,9 @@
   var nxApplyMiddlewares = require('@feizheng/next-apply-fetch-middleware');
   var nxFetchWithProxy = require('@feizheng/next-fetch-with-proxy');
   var nxFetchWithTimeut = require('@feizheng/next-fetch-with-timeout');
+  var AbortController = require('abort-controller');
 
-  var DEFAULT_OPTIONS = { method: 'GET', timeout: 5 * 1000 };
+  var DEFAULT_OPTIONS = { method: 'GET', timeout: 5 * 1000, AbortController: AbortController };
   var CHECK_SOURCE = 'https://icanhazip.com';
   var fetch = nxApplyMiddlewares([
     nxFetchWithProxy,
