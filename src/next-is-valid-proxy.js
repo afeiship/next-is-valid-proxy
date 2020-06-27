@@ -4,14 +4,13 @@
   var nodeFetch = require('node-fetch');
   var nxApplyMiddlewares = require('@feizheng/next-apply-fetch-middleware');
   var nxFetchWithProxy = require('@feizheng/next-fetch-with-proxy');
-  var nxFetchWithTimeut = require('@feizheng/next-fetch-with-timeout');
-  var AbortController = require('abort-controller');
+  var nxFetchWithNodeTimeut = require('@feizheng/next-fetch-with-node-timeout');
 
-  var DEFAULT_OPTIONS = { method: 'GET', timeout: 5 * 1000, AbortController: AbortController };
-  var CHECK_SOURCE = 'https://icanhazip.com';
+  var DEFAULT_OPTIONS = { method: 'GET', timeout: 5 * 1000 };
+  var CHECK_SOURCE = 'http://icanhazip.com';
   var fetch = nxApplyMiddlewares([
     nxFetchWithProxy,
-    nxFetchWithTimeut
+    nxFetchWithNodeTimeut
   ])(nodeFetch);
 
   nx.isValidProxy = function (inUrl, inOptions) {

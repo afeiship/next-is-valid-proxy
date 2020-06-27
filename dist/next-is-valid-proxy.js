@@ -2,8 +2,8 @@
  * name: @feizheng/next-is-valid-proxy
  * description: Check if proxy is valid.
  * homepage: https://github.com/afeiship/next-is-valid-proxy
- * version: 1.1.1
- * date: 2020-06-26T10:16:01.249Z
+ * version: 1.2.0
+ * date: 2020-06-27T14:19:07.580Z
  * license: MIT
  */
 
@@ -13,14 +13,13 @@
   var nodeFetch = require('node-fetch');
   var nxApplyMiddlewares = require('@feizheng/next-apply-fetch-middleware');
   var nxFetchWithProxy = require('@feizheng/next-fetch-with-proxy');
-  var nxFetchWithTimeut = require('@feizheng/next-fetch-with-timeout');
-  var AbortController = require('abort-controller');
+  var nxFetchWithNodeTimeut = require('@feizheng/next-fetch-with-node-timeout');
 
-  var DEFAULT_OPTIONS = { method: 'GET', timeout: 5 * 1000, AbortController: AbortController };
-  var CHECK_SOURCE = 'https://icanhazip.com';
+  var DEFAULT_OPTIONS = { method: 'GET', timeout: 5 * 1000 };
+  var CHECK_SOURCE = 'http://icanhazip.com';
   var fetch = nxApplyMiddlewares([
     nxFetchWithProxy,
-    nxFetchWithTimeut
+    nxFetchWithNodeTimeut
   ])(nodeFetch);
 
   nx.isValidProxy = function (inUrl, inOptions) {
