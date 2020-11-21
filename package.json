@@ -42,5 +42,10 @@
     "@jswork/next-fetch-with-node-timeout": "^1.0.0",
     "@jswork/next-fetch-with-proxy": "^1.0.1",
     "node-fetch": "^2.6.1"
-  }
+  },
+  "keywords": [
+    "next",
+    "valid",
+    "proxy"
+  ]
 }

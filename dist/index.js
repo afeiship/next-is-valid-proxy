@@ -3,7 +3,7 @@
  * description: Check if proxy is valid.
  * homepage: https://github.com/afeiship/next-is-valid-proxy
  * version: 1.0.0
- * date: 2020-11-21 08:37:48
+ * date: 2020-11-21 08:40:47
  * license: MIT
  */
 
